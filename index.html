@@ -109,18 +109,6 @@
 </head>
 
 <body class="bg-gray-50 text-gray-800 font-sans transition-colors duration-300 dark:bg-gray-900 dark:text-white">
-    <!-- Enhanced Dark Mode Toggle -->
-    <div class="fixed top-4 right-4 z-50 flex items-center">
-        <div class="relative inline-block w-16 mr-2 align-middle select-none transition duration-200 ease-in-out">
-            <input type="checkbox" name="toggle" id="toggle"
-                class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transform transition-transform duration-200 ease-in-out" />
-            <label for="toggle"
-                class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 dark:bg-gray-600 cursor-pointer transition-colors duration-200 ease-in-out"></label>
-        </div>
-        <span class="text-gray-700 dark:text-gray-300 transition-colors duration-200">
-            <i id="theme-icon" class="fas fa-moon text-lg"></i>
-        </span>
-    </div>
 
     <!-- Scroll Progress -->
     <div class="fixed top-0 left-0 right-0 h-1 z-50">
@@ -671,47 +659,6 @@
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
 
-        // Enhanced Dark Mode Toggle with System Preference
-        const toggle = document.getElementById('toggle');
-        const html = document.documentElement;
-        const themeIcon = document.getElementById('theme-icon');
-
-        // Check for saved user preference or system preference
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const savedMode = localStorage.getItem('darkMode');
-
-        if (savedMode === 'true' || (!savedMode && prefersDark)) {
-            html.classList.add('dark');
-            toggle.checked = true;
-            themeIcon.classList.replace('fa-moon', 'fa-sun');
-        }
-
-        toggle.addEventListener('change', function () {
-            if (this.checked) {
-                html.classList.add('dark');
-                localStorage.setItem('darkMode', 'true');
-                themeIcon.classList.replace('fa-moon', 'fa-sun');
-            } else {
-                html.classList.remove('dark');
-                localStorage.setItem('darkMode', 'false');
-                themeIcon.classList.replace('fa-sun', 'fa-moon');
-            }
-        });
-
-        // Watch for system preference changes
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-            if (localStorage.getItem('darkMode') === null) {
-                if (e.matches) {
-                    html.classList.add('dark');
-                    toggle.checked = true;
-                    themeIcon.classList.replace('fa-moon', 'fa-sun');
-                } else {
-                    html.classList.remove('dark');
-                    toggle.checked = false;
-                    themeIcon.classList.replace('fa-sun', 'fa-moon');
-                }
-            }
-        });
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
